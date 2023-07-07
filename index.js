@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require("express");
 const app = express();
 const db = require("./connection")
@@ -26,7 +27,7 @@ app.get("/",(req,res)=>{
 
 app.get("/get",(req,res)=>{
 
-    const query = "SELECT * FROM books";
+    const query = "SELECT * FROM Books";
     db.query(query, (err,result)=>{
         // console.log(result);
         res.send(result);
@@ -42,7 +43,7 @@ app.post("/addtocart",(req,res)=>{
 
     console.log(user_id, book_id)
 
-    const sqlInsert = "INSERT INTO cart (user_id, book_id) VALUES (?,?)";
+    const sqlInsert = "INSERT INTO Cart (user_id, book_id) VALUES (?,?)";
     db.query(sqlInsert,[user_id, book_id],(error,result)=>{
 
         if(error){
